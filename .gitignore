@@ -1,0 +1,67 @@
+# ══════════════════════════════════════════════════════════════════════
+# Synkora — Git Ignore
+# ══════════════════════════════════════════════════════════════════════
+
+# ── Dependencies ─────────────────────────────────────────────────────
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Environment Variables ────────────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ── Build Outputs ────────────────────────────────────────────────────
+.next/
+out/
+*.tsbuildinfo
+
+# ── IDE / Editor ─────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ── Testing ──────────────────────────────────────────────────────────
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# ── Storage (cloned repos) ───────────────────────────────────────────
+storage/
+*.db
+*.sqlite3
+
+# ── Logs ─────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Docker ───────────────────────────────────────────────────────────
+docker-compose.override.yml
+
+# ── Misc ─────────────────────────────────────────────────────────────
+*.bak
+*.tmp
+*.temp
+.agents/

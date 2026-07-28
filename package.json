@@ -1,0 +1,24 @@
+{
+  "name": "synkora",
+  "version": "0.1.0",
+  "description": "AI-Powered Software Evolution Intelligence Platform",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:web\" \"npm run dev:api\"",
+    "dev:web": "cd web && npm run dev",
+    "dev:api": "cd api && uvicorn app.main:app --reload --port 8000",
+    "build": "cd web && npm run build",
+    "lint": "cd web && npm run lint",
+    "test": "cd web && npm test",
+    "test:api": "cd api && pytest"
+  },
+  "keywords": [
+    "code-analysis",
+    "software-evolution",
+    "ai",
+    "developer-tools",
+    "knowledge-graph"
+  ],
+  "author": "Synkora Team",
+  "license": "MIT"
+}
