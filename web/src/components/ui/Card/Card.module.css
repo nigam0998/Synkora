@@ -1,0 +1,117 @@
+/*
+ * Synkora — Card Component Styles
+ */
+
+.card {
+  position: relative;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+/* ── Variants ────────────────────────────────────────── */
+.default {}
+
+.glass {
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.elevated {
+  background: var(--color-bg-elevated);
+  box-shadow: var(--shadow-md);
+}
+
+.outline {
+  background: transparent;
+  border: 1px solid var(--color-border-hover);
+}
+
+/* ── Interactive ─────────────────────────────────────── */
+.interactive {
+  cursor: pointer;
+}
+
+.interactive:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.interactive:active {
+  transform: translateY(-2px);
+}
+
+/* ── Glow Top Border ─────────────────────────────────── */
+.glowTop::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-accent), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.glowTop:hover::before {
+  opacity: 1;
+}
+
+/* ── Padding ─────────────────────────────────────────── */
+.noPadding {
+  padding: 0;
+}
+
+.sm {
+  padding: var(--space-4);
+}
+
+.md {
+  padding: var(--space-6);
+}
+
+.lg {
+  padding: var(--space-8);
+}
+
+/* ── Card Parts ──────────────────────────────────────── */
+.header {
+  padding: var(--space-6) var(--space-6) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerTitle {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.headerSubtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-1);
+}
+
+.body {
+  padding: var(--space-6);
+}
+
+.footer {
+  padding: 0 var(--space-6) var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 0 var(--space-6);
+}
