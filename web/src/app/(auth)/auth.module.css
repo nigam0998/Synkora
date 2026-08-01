@@ -1,0 +1,252 @@
+/*
+ * Synkora — Auth Page Styles (Login / Register)
+ */
+
+.authPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  position: relative;
+}
+
+.authPage::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -10%;
+  width: 120%;
+  height: 160%;
+  background:
+    radial-gradient(ellipse 40% 35% at 25% 35%, rgba(108, 92, 231, 0.1), transparent 60%),
+    radial-gradient(ellipse 30% 25% at 75% 65%, rgba(0, 210, 255, 0.06), transparent 60%);
+  z-index: -1;
+}
+
+.authCard {
+  width: 100%;
+  max-width: 460px;
+  background: var(--color-bg-card);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.authCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent), var(--color-primary));
+}
+
+.authHeader {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.authLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  margin-bottom: var(--space-6);
+}
+
+.authLogo .logoIcon {
+  font-size: var(--text-3xl);
+}
+
+.authTitle {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  margin-bottom: var(--space-2);
+}
+
+.authSubtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.authDivider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin: var(--space-2) 0;
+}
+
+.authDivider::before,
+.authDivider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.authDivider span {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.oauthButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.oauthButton:hover {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-border-hover);
+  transform: translateY(-1px);
+}
+
+.oauthIcon {
+  font-size: var(--text-xl);
+}
+
+.submitButton {
+  width: 100%;
+  padding: var(--space-3) var(--space-6);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+  font-size: var(--text-base);
+  font-weight: 700;
+  font-family: var(--font-sans);
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-glow-primary);
+  height: 48px;
+  margin-top: var(--space-2);
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px var(--color-primary-glow);
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.authFooter {
+  text-align: center;
+  margin-top: var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.authFooter a {
+  color: var(--color-primary-light);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.authFooter a:hover {
+  color: var(--color-accent);
+}
+
+.errorAlert {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: rgba(255, 82, 82, 0.08);
+  border: 1px solid rgba(255, 82, 82, 0.2);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-error-light);
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.errorIcon {
+  flex-shrink: 0;
+  font-size: var(--text-lg);
+}
+
+.forgotPassword {
+  text-align: right;
+  margin-top: calc(var(--space-1) * -1);
+}
+
+.forgotPassword a {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.forgotPassword a:hover {
+  color: var(--color-primary-light);
+}
+
+.passwordStrength {
+  display: flex;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.strengthBar {
+  flex: 1;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-tertiary);
+  transition: background var(--transition-fast);
+}
+
+.strengthBar.active {
+  background: var(--color-error);
+}
+
+.strengthBar.medium {
+  background: var(--color-warning);
+}
+
+.strengthBar.strong {
+  background: var(--color-success);
+}
+
+@media (max-width: 480px) {
+  .authCard {
+    padding: var(--space-6);
+  }
+
+  .authTitle {
+    font-size: var(--text-xl);
+  }
+}

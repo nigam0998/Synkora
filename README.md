@@ -147,12 +147,23 @@ docker-compose up -d
 
 ## 📅 Development Roadmap
 
-| Week | Focus | Status |
-|------|-------|--------|
-| **Week 1** | Foundation & Core Infrastructure | 🟡 In Progress |
-| **Week 2** | Code Analysis Engine | ⬜ Planned |
-| **Week 3** | AI & Intelligence Layer | ⬜ Planned |
-| **Week 4** | Polish, Testing & Deployment | ⬜ Planned |
+### Week 1: Foundation & Core Infrastructure (🟡 In Progress)
+- [x] **Day 1**: Monorepo Scaffolding, Next.js & FastAPI setup, Global CSS Design System
+- [x] **Day 2**: UI Component Library, Landing Page Polish, Scroll Animations
+- [x] **Day 3**: Authentication System (JWT, bcrypt, PostgreSQL integration, Protected Routes)
+- [ ] **Day 4**: Database & ORM Setup
+- [ ] **Day 5**: User Dashboard & Settings
+- [ ] **Day 6**: GitHub API Integration
+- [ ] **Day 7**: Repository Webhooks
+
+### Week 2: Code Analysis Engine (⬜ Planned)
+- **Focus**: AST parsing, dependency mapping, code metrics.
+
+### Week 3: AI & Intelligence Layer (⬜ Planned)
+- **Focus**: Semantic search, AI chat assistant, vector embeddings.
+
+### Week 4: Polish, Testing & Deployment (⬜ Planned)
+- **Focus**: Security scanning, Docker, CI/CD, production deployment.
 
 ---
 
