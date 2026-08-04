@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     ALLOWED_ORIGINS: str = "http://localhost:3000,http://127.0.0.1:3000"
 
     # ── Database ─────────────────────────────────────────────────────
-    DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/synkora"
+    DATABASE_URL: str = "sqlite:///./synkora.db"  # Override with PostgreSQL in production
     DATABASE_ECHO: bool = False
 
     # ── Redis ────────────────────────────────────────────────────────

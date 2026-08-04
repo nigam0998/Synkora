@@ -11,6 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.core.logging import setup_logging, get_logger
+from app.core.database import init_db, close_db
 from app.routers import health, auth, repositories, analysis
 
 
@@ -24,7 +25,14 @@ async def lifespan(app: FastAPI):
         version=settings.APP_VERSION,
         environment=settings.ENVIRONMENT,
     )
+
+    # Initialize database (create tables if needed)
+    await init_db()
+
     yield
+
+    # Cleanup database connections
+    await close_db()
     logger.info("shutting_down_synkora_api")
 
 
