@@ -1,82 +1,172 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
+import styles from "./dashboard.module.css";
+
+const LANG_COLORS: Record<string, string> = {
+  TypeScript: "#3178C6",
+  JavaScript: "#F7DF1E",
+  Python: "#3776AB",
+  Rust: "#DEA584",
+  Go: "#00ADD8",
+  Java: "#ED8B00",
+  Ruby: "#CC342D",
+};
+
+const mockRepos = [
+  {
+    id: "1",
+    name: "synkora",
+    full_name: "nigam0998/Synkora",
+    description: "AI-Powered Software Evolution Intelligence Platform",
+    language: "TypeScript",
+    stars: 12,
+    forks: 3,
+    status: "ready",
+    updatedAt: "2 hours ago",
+  },
+  {
+    id: "2",
+    name: "api-gateway",
+    full_name: "nigam0998/api-gateway",
+    description: "High-performance API gateway with rate limiting and auth",
+    language: "Go",
+    stars: 45,
+    forks: 8,
+    status: "analyzing",
+    updatedAt: "1 day ago",
+  },
+  {
+    id: "3",
+    name: "ml-pipeline",
+    full_name: "nigam0998/ml-pipeline",
+    description: "End-to-end machine learning pipeline with feature store",
+    language: "Python",
+    stars: 89,
+    forks: 21,
+    status: "pending",
+    updatedAt: "3 days ago",
+  },
+];
+
+const mockActivity = [
+  { icon: "🔬", text: "Analysis completed for synkora", time: "2 hours ago" },
+  { icon: "📂", text: "Repository api-gateway connected", time: "1 day ago" },
+  { icon: "💡", text: "3 new insights found in ml-pipeline", time: "2 days ago" },
+  { icon: "🐛", text: "Bug risk detected in auth module", time: "3 days ago" },
+];
+
+function getStatusClass(status: string) {
+  switch (status) {
+    case "ready": return styles.statusReady;
+    case "analyzing": return styles.statusAnalyzing;
+    case "pending": return styles.statusPending;
+    case "error": return styles.statusError;
+    default: return styles.statusPending;
+  }
+}
 
 export default function DashboardPage() {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <ProtectedRoute>
-      <div style={{
-        padding: "var(--space-8)",
-        maxWidth: "1200px",
-        margin: "0 auto",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        gap: "var(--space-8)"
-      }}>
-        <header style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          paddingBottom: "var(--space-6)",
-          borderBottom: "1px solid var(--color-border)"
-        }}>
-          <div>
-            <h1 style={{ fontSize: "var(--text-3xl)", fontWeight: 800, marginBottom: "var(--space-2)" }}>
-              Dashboard
-            </h1>
-            <p style={{ color: "var(--color-text-secondary)" }}>
-              Welcome back, {user?.full_name}!
-            </p>
-          </div>
-          <button
-            onClick={logout}
-            style={{
-              padding: "var(--space-2) var(--space-4)",
-              background: "var(--color-bg-tertiary)",
-              border: "1px solid var(--color-border)",
-              borderRadius: "var(--radius-md)",
-              color: "var(--color-text-primary)",
-              cursor: "pointer",
-              transition: "all var(--transition-fast)"
-            }}
-            onMouseOver={(e) => (e.currentTarget.style.borderColor = "var(--color-primary-light)")}
-            onMouseOut={(e) => (e.currentTarget.style.borderColor = "var(--color-border)")}
-          >
-            Log Out
-          </button>
-        </header>
+      <DashboardHeader
+        title={`Welcome back, ${user?.full_name?.split(" ")[0] || "User"}`}
+        breadcrumbs={[{ label: "Dashboard" }]}
+      />
 
-        <main>
-          <div style={{
-            background: "var(--color-bg-card)",
-            padding: "var(--space-6)",
-            borderRadius: "var(--radius-lg)",
-            border: "1px solid var(--color-border)",
-            textAlign: "center"
-          }}>
-            <h2 style={{ marginBottom: "var(--space-4)" }}>Your Repositories</h2>
-            <p style={{ color: "var(--color-text-secondary)", marginBottom: "var(--space-6)" }}>
-              You haven&apos;t connected any repositories yet.
-            </p>
-            <button style={{
-              padding: "var(--space-3) var(--space-6)",
-              background: "linear-gradient(135deg, var(--color-primary), var(--color-primary-dark))",
-              color: "white",
-              border: "none",
-              borderRadius: "var(--radius-lg)",
-              fontWeight: 600,
-              cursor: "pointer",
-              boxShadow: "var(--shadow-glow-primary)"
-            }}>
-              Connect GitHub Repository
-            </button>
-          </div>
-        </main>
+      <div className={styles.pageContent}>
+        {/* ── Stats Grid ──────────────────────────────────── */}
+        <div className={styles.statsGrid}>
+          {[
+            { icon: "📂", label: "Repositories", value: "3", trend: "+1", trendDir: "up", color: "purple" },
+            { icon: "🔬", label: "Analyses", value: "12", trend: "+3", trendDir: "up", color: "cyan" },
+            { icon: "💡", label: "Insights", value: "47", trend: "+8", trendDir: "up", color: "green" },
+            { icon: "⚠️", label: "Open Issues", value: "5", trend: "-2", trendDir: "down", color: "orange" },
+          ].map((stat) => (
+            <div key={stat.label} className={styles.statCard}>
+              <div className={styles.statCardHeader}>
+                <div className={`${styles.statCardIcon} ${styles[stat.color]}`}>
+                  {stat.icon}
+                </div>
+                <span className={`${styles.statCardTrend} ${stat.trendDir === "up" ? styles.trendUp : styles.trendDown}`}>
+                  {stat.trendDir === "up" ? "↑" : "↓"} {stat.trend}
+                </span>
+              </div>
+              <div className={styles.statCardValue}>{stat.value}</div>
+              <div className={styles.statCardLabel}>{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Repositories ────────────────────────────────── */}
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Your Repositories</h2>
+          <Link href="/dashboard/repos" className={styles.sectionAction}>
+            View all →
+          </Link>
+        </div>
+
+        <div className={styles.repoGrid}>
+          {mockRepos.map((repo) => (
+            <Link
+              key={repo.id}
+              href={`/dashboard/repos/${repo.id}`}
+              className={styles.repoCard}
+            >
+              <div className={styles.repoCardTop}>
+                <div>
+                  <div className={styles.repoName}>{repo.name}</div>
+                  <div className={styles.repoFullName}>{repo.full_name}</div>
+                </div>
+                <span className={`${styles.repoStatus} ${getStatusClass(repo.status)}`}>
+                  {repo.status}
+                </span>
+              </div>
+
+              <p className={styles.repoDescription}>{repo.description}</p>
+
+              <div className={styles.repoMeta}>
+                {repo.language && (
+                  <span className={styles.repoMetaItem}>
+                    <span
+                      className={styles.langDot}
+                      style={{ background: LANG_COLORS[repo.language] || "#888" }}
+                    />
+                    {repo.language}
+                  </span>
+                )}
+                <span className={styles.repoMetaItem}>⭐ {repo.stars}</span>
+                <span className={styles.repoMetaItem}>🍴 {repo.forks}</span>
+                <span className={styles.repoMetaItem} style={{ marginLeft: "auto" }}>
+                  {repo.updatedAt}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* ── Recent Activity ─────────────────────────────── */}
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Recent Activity</h2>
+        </div>
+
+        <div className={styles.activityList}>
+          {mockActivity.map((item, i) => (
+            <div key={i} className={styles.activityItem}>
+              <div className={styles.activityIcon}>{item.icon}</div>
+              <div className={styles.activityContent}>
+                <div className={styles.activityText}>{item.text}</div>
+                <div className={styles.activityTime}>{item.time}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </ProtectedRoute>
   );
