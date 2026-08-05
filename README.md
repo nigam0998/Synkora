@@ -141,7 +141,7 @@ docker-compose up -d
 - [x] **Day 3**: Authentication System (JWT, bcrypt, PostgreSQL integration, Protected Routes)
 - [x] **Day 4**: Database & ORM Setup (Async SQLAlchemy, Domain Models, SQLite fallback)
 - [x] **Day 5**: User Dashboard & Settings (Sidebar, Stats Grid, Repo Cards, Settings Tabs)
-- [ ] **Day 6**: GitHub API Integration
+- [x] **Day 6**: GitHub API Integration (OAuth, Repo CRUD, RepoBrowser Modal)
 - [ ] **Day 7**: Repository Webhooks
 
 ### Week 2: Code Analysis Engine (⬜ Planned)

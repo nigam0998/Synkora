@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
+import { RepoBrowser } from "@/components/dashboard/RepoBrowser";
 import styles from "./dashboard.module.css";
 
 const LANG_COLORS: Record<string, string> = {
@@ -72,6 +73,7 @@ function getStatusClass(status: string) {
 
 export default function DashboardPage() {
   const { user } = useAuth();
+  const [repoBrowserOpen, setRepoBrowserOpen] = useState(false);
 
   return (
     <ProtectedRoute>
@@ -107,9 +109,28 @@ export default function DashboardPage() {
         {/* ── Repositories ────────────────────────────────── */}
         <div className={styles.sectionHeader}>
           <h2 className={styles.sectionTitle}>Your Repositories</h2>
-          <Link href="/dashboard/repos" className={styles.sectionAction}>
-            View all →
-          </Link>
+          <div style={{ display: "flex", gap: "var(--space-3)", alignItems: "center" }}>
+            <button
+              onClick={() => setRepoBrowserOpen(true)}
+              className={styles.sectionAction}
+              style={{
+                background: "linear-gradient(135deg, var(--color-primary), var(--color-primary-dark))",
+                color: "white",
+                border: "none",
+                padding: "var(--space-2) var(--space-4)",
+                borderRadius: "var(--radius-md)",
+                fontSize: "var(--text-xs)",
+                fontWeight: 600,
+                cursor: "pointer",
+                fontFamily: "var(--font-sans)",
+              }}
+            >
+              + Connect Repo
+            </button>
+            <Link href="/dashboard/repos" className={styles.sectionAction}>
+              View all →
+            </Link>
+          </div>
         </div>
 
         <div className={styles.repoGrid}>
@@ -168,6 +189,16 @@ export default function DashboardPage() {
           ))}
         </div>
       </div>
+
+      {/* ── Repo Browser Modal ─────────────────────────── */}
+      <RepoBrowser
+        isOpen={repoBrowserOpen}
+        onClose={() => setRepoBrowserOpen(false)}
+        onConnect={(repos) => {
+          // TODO: Call API to import repos
+          console.log("Connecting repos:", repos);
+        }}
+      />
     </ProtectedRoute>
   );
 }
