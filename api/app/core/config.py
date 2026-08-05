@@ -41,6 +41,7 @@ class Settings(BaseSettings):
     GITHUB_CLIENT_ID: Optional[str] = None
     GITHUB_CLIENT_SECRET: Optional[str] = None
     GITHUB_REDIRECT_URI: str = "http://localhost:3000/auth/github/callback"
+    GITHUB_WEBHOOK_SECRET: Optional[str] = None
 
     # ── Google Gemini AI ─────────────────────────────────────────────
     GEMINI_API_KEY: Optional[str] = None

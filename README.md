@@ -135,17 +135,23 @@ docker-compose up -d
 
 ## 📅 Development Roadmap
 
-### Week 1: Foundation & Core Infrastructure (🟡 In Progress)
+### Week 1: Foundation & Core Infrastructure (✅ Complete)
 - [x] **Day 1**: Monorepo Scaffolding, Next.js & FastAPI setup, Global CSS Design System
 - [x] **Day 2**: UI Component Library, Landing Page Polish, Scroll Animations
 - [x] **Day 3**: Authentication System (JWT, bcrypt, PostgreSQL integration, Protected Routes)
 - [x] **Day 4**: Database & ORM Setup (Async SQLAlchemy, Domain Models, SQLite fallback)
 - [x] **Day 5**: User Dashboard & Settings (Sidebar, Stats Grid, Repo Cards, Settings Tabs)
 - [x] **Day 6**: GitHub API Integration (OAuth, Repo CRUD, RepoBrowser Modal)
-- [ ] **Day 7**: Repository Webhooks
+- [x] **Day 7**: Repository Webhooks & Cloning (Webhook Verification, Clone Service, Background Tasks)
 
-### Week 2: Code Analysis Engine (⬜ Planned)
-- **Focus**: AST parsing, dependency mapping, code metrics.
+### Week 2: Code Analysis Engine (🟡 In Progress)
+- [ ] **Day 8**: AST Parsing with Tree-sitter (multi-language support)
+- [ ] **Day 9**: Code Metrics Engine (complexity, coupling, cohesion)
+- [ ] **Day 10**: Dependency Graph Builder
+- [ ] **Day 11**: Git History Mining (commit analysis, contributor stats)
+- [ ] **Day 12**: Technical Debt Detection
+- [ ] **Day 13**: Analysis Pipeline Orchestration
+- [ ] **Day 14**: Analysis Results UI (dashboards, charts)
 
 ### Week 3: AI & Intelligence Layer (⬜ Planned)
 - **Focus**: Semantic search, AI chat assistant, vector embeddings.

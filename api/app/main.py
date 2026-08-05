@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.logging import setup_logging, get_logger
 from app.core.database import init_db, close_db
-from app.routers import health, auth, repositories, analysis, github
+from app.routers import health, auth, repositories, analysis, github, webhooks
 
 
 @asynccontextmanager
@@ -68,6 +68,9 @@ def create_app() -> FastAPI:
     )
     app.include_router(
         github.router, prefix="/api/v1/github", tags=["GitHub"]
+    )
+    app.include_router(
+        webhooks.router, prefix="/api/v1/webhooks", tags=["Webhooks"]
     )
 
     return app
