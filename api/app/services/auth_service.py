@@ -132,8 +132,10 @@ class AuthService:
             raise ValueError("Invalid token type — expected refresh token")
 
         user_id = payload.get("sub")
-        user = _users_db.get(user_id) if user_id else None
+        if user_id is None:
+            raise ValueError("User not found")
 
+        user = _users_db.get(user_id)
         if not user:
             raise ValueError("User not found")
 
@@ -165,8 +167,10 @@ class AuthService:
             return None
 
         user_id = payload.get("sub")
-        user = _users_db.get(user_id) if user_id else None
+        if not user_id:
+            return None
 
+        user = _users_db.get(user_id)
         if not user or not user["is_active"]:
             return None
 

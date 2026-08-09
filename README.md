@@ -145,7 +145,7 @@ docker-compose up -d
 - [x] **Day 7**: Repository Webhooks & Cloning (Webhook Verification, Clone Service, Background Tasks)
 
 ### Week 2: Code Analysis Engine (🟡 In Progress)
-- [ ] **Day 8**: AST Parsing with Tree-sitter (multi-language support)
+- [x] **Day 8**: AST Parsing with Tree-sitter (Python, JS, TS, Go, Rust — functions, classes, imports)
 - [ ] **Day 9**: Code Metrics Engine (complexity, coupling, cohesion)
 - [ ] **Day 10**: Dependency Graph Builder
 - [ ] **Day 11**: Git History Mining (commit analysis, contributor stats)
