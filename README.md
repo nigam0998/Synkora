@@ -147,7 +147,7 @@ docker-compose up -d
 ### Week 2: Code Analysis Engine (🟡 In Progress)
 - [x] **Day 8**: AST Parsing with Tree-sitter (Python, JS, TS, Go, Rust — functions, classes, imports)
 - [x] **Day 9**: Code Metrics Engine (Cyclomatic/Cognitive Complexity, Maintainability Index, Tech Debt)
-- [ ] **Day 10**: Dependency Graph Builder
+- [x] **Day 10**: Dependency Graph Builder (Import Resolution, Cycle Detection, Coupling Metrics)
 - [ ] **Day 11**: Git History Mining (commit analysis, contributor stats)
 - [ ] **Day 12**: Technical Debt Detection
 - [ ] **Day 13**: Analysis Pipeline Orchestration

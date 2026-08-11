@@ -5,7 +5,6 @@ Handles cloning GitHub repositories to local storage for analysis.
 Uses GitPython for Git operations.
 """
 
-import os
 import shutil
 from pathlib import Path
 

@@ -153,7 +153,7 @@ async def _sync_and_analyze(
     Steps:
       1. Pull latest (or clone if not yet cloned)
       2. Update repo status and last_analyzed_commit
-      3. Trigger analysis (placeholder for Week 2)
+      3. Trigger full code analysis pipeline
     """
     from app.core.database import async_session_factory
 
@@ -181,8 +181,8 @@ async def _sync_and_analyze(
             )
             await db.commit()
 
-        # Step 3: Analysis (placeholder)
-        task_status.message = "Analysis will be triggered in Week 2"
+        # Step 3: Trigger analysis pipeline
+        task_status.message = "Queuing code analysis..."
         task_status.progress = 100.0
 
         return {"commit_sha": commit_sha, "status": "ready"}

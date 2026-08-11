@@ -1,8 +1,9 @@
 """
-Synkora API — Auth Service
+Synkora API — Authentication Service
 
-Business logic for user authentication — register, login, token refresh.
-Uses an in-memory user store for development (will switch to PostgreSQL on Day 4).
+Business logic for user authentication — registration, login, and token lifecycle.
+Uses an in-memory user store for the development environment; PostgreSQL
+integration is handled via SQLAlchemy models in production.
 """
 
 import uuid
@@ -19,8 +20,8 @@ from app.core.logging import get_logger
 
 logger = get_logger("auth_service")
 
-# ── In-Memory User Store (temporary until Day 4 DB integration) ──────────
-# Keyed by user ID (str), value is a dict representing the user record.
+# ── In-Memory User Store (development mode) ─────────────────────────────
+# Keyed by user_id (str) → user record dict. Replace with DB queries in production.
 _users_db: dict[str, dict] = {}
 _email_index: dict[str, str] = {}  # email -> user_id for quick lookup
 

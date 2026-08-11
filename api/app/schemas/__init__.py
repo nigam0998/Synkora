@@ -1,4 +1,17 @@
-# Pydantic Schemas
+"""
+Synkora API — Schema Package
+
+Pydantic models for API request/response validation and serialization.
+Organized by domain:
+  - auth: Registration, login, token, and user response models
+  - repository: Repository CRUD models
+  - analysis: Analysis results and insight models
+  - webhook: GitHub webhook event models
+  - ast: Abstract Syntax Tree data models
+  - metrics: Code quality metric models
+  - dependency: Dependency graph models
+"""
+
 from app.schemas.auth import (
     RegisterRequest,
     LoginRequest,
@@ -18,6 +31,10 @@ from app.schemas.analysis import (
     InsightResponse,
     AnalysisDetailResponse,
 )
+from app.schemas.webhook import WebhookResponse
+from app.schemas.ast import ParsedFile, FunctionDef, ClassDef, ImportDef
+from app.schemas.metrics import FunctionMetrics, ClassMetrics, FileMetrics, RepositoryMetrics
+from app.schemas.dependency import DependencyNode, DependencyEdge, DependencyGraph
 
 __all__ = [
     # Auth
@@ -36,4 +53,20 @@ __all__ = [
     "AnalysisResponse",
     "InsightResponse",
     "AnalysisDetailResponse",
+    # Webhooks
+    "WebhookResponse",
+    # AST
+    "ParsedFile",
+    "FunctionDef",
+    "ClassDef",
+    "ImportDef",
+    # Metrics
+    "FunctionMetrics",
+    "ClassMetrics",
+    "FileMetrics",
+    "RepositoryMetrics",
+    # Dependencies
+    "DependencyNode",
+    "DependencyEdge",
+    "DependencyGraph",
 ]
