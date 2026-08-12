@@ -9,6 +9,7 @@ Business logic layer implementing the core platform capabilities:
   - ast_service: Multi-language AST parsing via Tree-sitter
   - metrics_service: Code quality metrics (complexity, maintainability)
   - dependency_service: Dependency graph construction and analysis
+  - git_history_service: Git commit mining, contributor stats, code churn
 """
 
 from app.services.auth_service import AuthService
@@ -18,6 +19,7 @@ from app.services.repo_service import RepositoryService
 from app.services.ast_service import ASTService
 from app.services.metrics_service import MetricsService
 from app.services.dependency_service import DependencyService
+from app.services.git_history_service import GitHistoryService
 
 __all__ = [
     "AuthService",
@@ -27,4 +29,5 @@ __all__ = [
     "ASTService",
     "MetricsService",
     "DependencyService",
+    "GitHistoryService",
 ]
