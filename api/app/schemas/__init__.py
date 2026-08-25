@@ -10,6 +10,7 @@ Organized by domain:
   - ast: Abstract Syntax Tree data models
   - metrics: Code quality metric models
   - dependency: Dependency graph models
+  - tech_debt: Technical debt issues and reports
 """
 
 from app.schemas.auth import (
@@ -35,6 +36,7 @@ from app.schemas.webhook import WebhookResponse
 from app.schemas.ast import ParsedFile, FunctionDef, ClassDef, ImportDef
 from app.schemas.metrics import FunctionMetrics, ClassMetrics, FileMetrics, RepositoryMetrics
 from app.schemas.dependency import DependencyNode, DependencyEdge, DependencyGraph
+from app.schemas.tech_debt import TechDebtIssue, TechDebtReport
 
 __all__ = [
     # Auth
@@ -69,4 +71,7 @@ __all__ = [
     "DependencyNode",
     "DependencyEdge",
     "DependencyGraph",
+    # Tech Debt
+    "TechDebtIssue",
+    "TechDebtReport",
 ]
