@@ -150,8 +150,8 @@ docker-compose up -d
 - [x] **Day 10**: Dependency Graph Builder (Import Resolution, Cycle Detection, Coupling Metrics)
 - [x] **Day 11**: Git History Mining (commit analysis, contributor stats, code churn)
 - [x] **Day 12**: Technical Debt Detection
-- [ ] **Day 13**: Analysis Pipeline Orchestration
-- [ ] **Day 14**: Analysis Results UI (dashboards, charts)
+- [x] **Day 13**: Analysis Pipeline Orchestration
+- [x] **Day 14**: Analysis Results UI (dashboards, charts)
 
 ### Week 3: AI & Intelligence Layer (⬜ Planned)
 - **Focus**: Semantic search, AI chat assistant, vector embeddings.

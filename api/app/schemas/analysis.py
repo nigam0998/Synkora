@@ -61,3 +61,13 @@ class AnalysisDetailResponse(BaseModel):
     analysis: AnalysisResponse
     insights: list[InsightResponse]
     insight_summary: dict  # { "critical": 2, "high": 5, ... }
+
+    model_config = {"from_attributes": True}
+
+
+class AnalysisHistoryResponse(BaseModel):
+    """Schema for returning historical analysis runs."""
+
+    history: list[AnalysisResponse]
+
+    model_config = {"from_attributes": True}
