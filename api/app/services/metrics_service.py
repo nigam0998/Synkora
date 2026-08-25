@@ -295,9 +295,6 @@ class MetricsService:
     def analyze_file(filepath: Path) -> Optional[FileMetrics]:
         """
         Perform a complete metrics analysis on a single source file.
-
-        Combines AST parsing with line analysis, complexity calculation,
-        and maintainability scoring.
         """
         # Parse the AST
         parsed = ASTService.parse_file(filepath)

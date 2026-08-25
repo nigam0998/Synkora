@@ -148,43 +148,23 @@ async def _sync_and_analyze(
     commit_sha: str,
 ):
     """
-    Background task: sync repository and trigger analysis.
-
-    Steps:
-      1. Pull latest (or clone if not yet cloned)
-      2. Update repo status and last_analyzed_commit
-      3. Trigger full code analysis pipeline
+    Background task: sync repository and trigger full analysis pipeline.
     """
     from app.core.database import async_session_factory
+    from app.services.analysis_orchestrator import AnalysisOrchestrator
 
     try:
-        # Step 1: Pull or clone
-        clone_info = CloneService.get_clone_info(repo_full_name)
-        if clone_info:
-            task_status.message = f"Pulling latest for {repo_full_name}..."
-            task_status.progress = 20.0
-            await CloneService.pull_latest(repo_full_name, branch)
-        else:
-            task_status.message = f"Cloning {repo_full_name}..."
-            task_status.progress = 10.0
-            await CloneService.clone_repo(
-                task_status, clone_url, repo_full_name, branch
-            )
-
-        # Step 2: Update DB
-        task_status.message = "Updating repository status..."
-        task_status.progress = 70.0
-
         async with async_session_factory() as db:
-            await RepositoryService.update_status(
-                db, repo_id, "ready", last_commit=commit_sha
+            await AnalysisOrchestrator.run_pipeline(
+                task_status=task_status,
+                db=db,
+                repository_id=repo_id,
+                commit_sha=commit_sha,
+                branch=branch,
             )
-            await db.commit()
-
-        # Step 3: Trigger analysis pipeline
-        task_status.message = "Queuing code analysis..."
+            
         task_status.progress = 100.0
-
+        task_status.message = "Analysis complete!"
         return {"commit_sha": commit_sha, "status": "ready"}
 
     except Exception as e:

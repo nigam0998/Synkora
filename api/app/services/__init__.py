@@ -22,6 +22,7 @@ from app.services.metrics_service import MetricsService
 from app.services.dependency_service import DependencyService
 from app.services.git_history_service import GitHistoryService
 from app.services.tech_debt_service import TechDebtService
+from app.services.analysis_orchestrator import AnalysisOrchestrator
 
 __all__ = [
     "AuthService",
@@ -33,4 +34,5 @@ __all__ = [
     "DependencyService",
     "GitHistoryService",
     "TechDebtService",
+    "AnalysisOrchestrator",
 ]
