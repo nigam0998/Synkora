@@ -182,6 +182,45 @@ class AnalysisOrchestrator:
             await db.commit()
             logger.info("pipeline_completed", repo=repo.full_name, analysis_id=analysis.id)
 
+            # 5. AI Enrichment (best-effort, does not block pipeline)
+            try:
+                from app.services.ai_service import AIService
+                from app.core.config import settings
+
+                if settings.GEMINI_API_KEY:
+                    task_status.message = "Enriching insights with AI..."
+                    task_status.progress = 95.0
+
+                    enrichments = await AIService.enrich_all_insights(tech_debt)
+
+                    # Persist AI recommendations back to the insight rows
+                    if enrichments:
+                        insight_result = await db.execute(
+                            select(Insight).where(Insight.analysis_id == analysis.id)
+                        )
+                        db_insights = insight_result.scalars().all()
+                        for db_insight in db_insights:
+                            # Match by title prefix (rule_name)
+                            for issue_id, advice in enrichments.items():
+                                if db_insight.id == issue_id or (
+                                    db_insight.metadata_json
+                                    and db_insight.metadata_json == next(
+                                        (i.related_metrics for i in tech_debt.issues if i.issue_id == issue_id), None
+                                    )
+                                ):
+                                    db_insight.recommendation = advice
+                                    db_insight.confidence = 0.85
+                                    break
+
+                        await db.commit()
+                        logger.info("ai_enrichment_completed", enriched=len(enrichments))
+                else:
+                    logger.info("ai_enrichment_skipped", reason="GEMINI_API_KEY not configured")
+
+            except Exception as ai_err:
+                # AI enrichment is non-critical — log and continue
+                logger.warning("ai_enrichment_failed", error=str(ai_err))
+
         except Exception as e:
             # Handle Failures
             error_trace = traceback.format_exc()
@@ -192,3 +231,4 @@ class AnalysisOrchestrator:
             repo.analysis_status = "error"
             
             await db.commit()
+

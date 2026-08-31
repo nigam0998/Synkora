@@ -11,6 +11,7 @@ Business logic layer implementing the core platform capabilities:
   - dependency_service: Dependency graph construction and analysis
   - git_history_service: Git commit mining, contributor stats, code churn
   - tech_debt_service: Tech debt detection and rule engine
+  - ai_service: Gemini AI integration for insight enrichment
 """
 
 from app.services.auth_service import AuthService
@@ -23,6 +24,7 @@ from app.services.dependency_service import DependencyService
 from app.services.git_history_service import GitHistoryService
 from app.services.tech_debt_service import TechDebtService
 from app.services.analysis_orchestrator import AnalysisOrchestrator
+from app.services.ai_service import AIService
 
 __all__ = [
     "AuthService",
@@ -35,4 +37,5 @@ __all__ = [
     "GitHistoryService",
     "TechDebtService",
     "AnalysisOrchestrator",
+    "AIService",
 ]

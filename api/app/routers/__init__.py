@@ -8,4 +8,5 @@ REST API endpoint handlers organized by domain:
   - analysis: Code analysis results and insights
   - github: GitHub OAuth flow and repository discovery
   - webhooks: Incoming GitHub webhook event processing
+  - ai: AI-powered insight enrichment and repo summaries
 """

@@ -153,8 +153,14 @@ docker-compose up -d
 - [x] **Day 13**: Analysis Pipeline Orchestration
 - [x] **Day 14**: Analysis Results UI (dashboards, charts)
 
-### Week 3: AI & Intelligence Layer (⬜ Planned)
-- **Focus**: Semantic search, AI chat assistant, vector embeddings.
+### Week 3: AI & Intelligence Layer (🟡 In Progress)
+- [x] **Day 15**: Gemini AI Integration (AIService, insight enrichment, repo health summaries)
+- [ ] **Day 16**: Vector Embeddings & pgvector
+- [ ] **Day 17**: Semantic Code Search API
+- [ ] **Day 18**: Semantic Search UI
+- [ ] **Day 19**: Context-Aware AI Chat Assistant (Backend)
+- [ ] **Day 20**: AI Chat Interface (Frontend)
+- [ ] **Day 21**: Auto-Refactoring Suggestions
 
 ### Week 4: Polish, Testing & Deployment (⬜ Planned)
 - **Focus**: Security scanning, Docker, CI/CD, production deployment.
