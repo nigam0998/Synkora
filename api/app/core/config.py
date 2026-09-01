@@ -43,9 +43,10 @@ class Settings(BaseSettings):
     GITHUB_REDIRECT_URI: str = "http://localhost:3000/auth/github/callback"
     GITHUB_WEBHOOK_SECRET: Optional[str] = None
 
-    # ── Google Gemini AI ─────────────────────────────────────────────
-    GEMINI_API_KEY: Optional[str] = None
-    GEMINI_MODEL: str = "gemini-2.5-flash"
+    # ── AI Configuration (OpenRouter / DeepSeek) ─────────────────────
+    AI_API_KEY: Optional[str] = None
+    AI_MODEL: str = "deepseek/deepseek-chat"
+    AI_BASE_URL: str = "https://openrouter.ai/api/v1"
 
     # ── Repository Storage ───────────────────────────────────────────
     REPO_STORAGE_PATH: str = "./storage/repos"

@@ -1,7 +1,7 @@
 """
 Synkora API — AI Service
 
-Integrates with the Google Gemini API to provide intelligent code analysis.
+Integrates with OpenAI-compatible APIs (OpenRouter / DeepSeek) to provide intelligent code analysis.
 Capabilities:
   - Enrich tech debt insights with actionable refactoring advice
   - Generate natural-language summaries of repository health
@@ -10,8 +10,7 @@ Capabilities:
 
 from typing import Optional
 
-from google import genai
-from google.genai import types
+from openai import AsyncOpenAI
 
 from app.core.config import settings
 from app.core.logging import get_logger
@@ -83,22 +82,25 @@ Write the executive health summary now.
 
 
 class AIService:
-    """Service for AI-powered code analysis via Google Gemini."""
+    """Service for AI-powered code analysis via OpenAI-compatible endpoints."""
 
-    _client: Optional[genai.Client] = None
+    _client: Optional[AsyncOpenAI] = None
 
     @classmethod
-    def _get_client(cls) -> genai.Client:
-        """Lazily initialise and return the Gemini client singleton."""
+    def _get_client(cls) -> AsyncOpenAI:
+        """Lazily initialise and return the OpenAI client singleton."""
         if cls._client is None:
-            api_key = settings.GEMINI_API_KEY
+            api_key = settings.AI_API_KEY
             if not api_key:
                 raise RuntimeError(
-                    "GEMINI_API_KEY is not configured. "
+                    "AI_API_KEY is not configured. "
                     "Set it in your .env file to enable AI features."
                 )
-            cls._client = genai.Client(api_key=api_key)
-            logger.info("gemini_client_initialized", model=settings.GEMINI_MODEL)
+            cls._client = AsyncOpenAI(
+                api_key=api_key,
+                base_url=settings.AI_BASE_URL,
+            )
+            logger.info("openai_client_initialized", model=settings.AI_MODEL, base_url=settings.AI_BASE_URL)
         return cls._client
 
     # ── Public API ────────────────────────────────────────────────────────
@@ -106,7 +108,7 @@ class AIService:
     @classmethod
     async def enrich_insight(cls, issue: TechDebtIssue) -> str:
         """
-        Send a single TechDebtIssue to Gemini and return an AI-generated
+        Send a single TechDebtIssue to the LLM and return an AI-generated
         refactoring recommendation.
         """
         client = cls._get_client()
@@ -128,16 +130,16 @@ class AIService:
         )
 
         try:
-            response = await client.aio.models.generate_content(
-                model=settings.GEMINI_MODEL,
-                contents=user_prompt,
-                config=types.GenerateContentConfig(
-                    system_instruction=REFACTORING_SYSTEM_PROMPT,
-                    temperature=0.3,
-                    max_output_tokens=1024,
-                ),
+            response = await client.chat.completions.create(
+                model=settings.AI_MODEL,
+                messages=[
+                    {"role": "system", "content": REFACTORING_SYSTEM_PROMPT},
+                    {"role": "user", "content": user_prompt}
+                ],
+                temperature=0.3,
+                max_tokens=1024,
             )
-            advice = response.text or ""
+            advice = response.choices[0].message.content or ""
             logger.info(
                 "insight_enriched",
                 rule=issue.rule_name,
@@ -181,16 +183,16 @@ class AIService:
         )
 
         try:
-            response = await client.aio.models.generate_content(
-                model=settings.GEMINI_MODEL,
-                contents=user_prompt,
-                config=types.GenerateContentConfig(
-                    system_instruction=REPO_SUMMARY_SYSTEM_PROMPT,
-                    temperature=0.4,
-                    max_output_tokens=512,
-                ),
+            response = await client.chat.completions.create(
+                model=settings.AI_MODEL,
+                messages=[
+                    {"role": "system", "content": REPO_SUMMARY_SYSTEM_PROMPT},
+                    {"role": "user", "content": user_prompt}
+                ],
+                temperature=0.4,
+                max_tokens=512,
             )
-            summary = response.text or ""
+            summary = response.choices[0].message.content or ""
             logger.info("repo_summary_generated", length=len(summary))
             return summary.strip()
 

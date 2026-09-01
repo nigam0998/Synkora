@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.logging import setup_logging, get_logger
 from app.core.database import init_db, close_db
-from app.routers import health, auth, repositories, analysis, github, webhooks, ai
+from app.routers import health, auth, repositories, analysis, github, webhooks, ai, search, chat, ws
 
 
 @asynccontextmanager
@@ -74,6 +74,15 @@ def create_app() -> FastAPI:
     )
     app.include_router(
         ai.router, prefix="/api/v1/ai", tags=["AI"]
+    )
+    app.include_router(
+        search.router, prefix="/api/v1", tags=["Search"]
+    )
+    app.include_router(
+        chat.router, prefix="/api/v1", tags=["Chat"]
+    )
+    app.include_router(
+        ws.router, prefix="/api/v1", tags=["WebSocket"]
     )
 
     return app

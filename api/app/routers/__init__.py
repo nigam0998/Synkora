@@ -9,4 +9,6 @@ REST API endpoint handlers organized by domain:
   - github: GitHub OAuth flow and repository discovery
   - webhooks: Incoming GitHub webhook event processing
   - ai: AI-powered insight enrichment and repo summaries
+  - search: Semantic code search using vector embeddings
+  - chat: AI-powered contextual Q&A over repository code (RAG)
 """

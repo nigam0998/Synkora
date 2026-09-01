@@ -15,6 +15,7 @@ from app.models.repository import Repository
 from app.models.analysis import Analysis
 from app.models.commit import CommitRecord
 from app.models.insight import Insight
+from app.models.embedding import CodeEmbedding
 
 __all__ = [
     "Base",
@@ -23,4 +24,5 @@ __all__ = [
     "Analysis",
     "CommitRecord",
     "Insight",
+    "CodeEmbedding",
 ]

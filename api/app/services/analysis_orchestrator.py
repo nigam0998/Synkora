@@ -187,7 +187,7 @@ class AnalysisOrchestrator:
                 from app.services.ai_service import AIService
                 from app.core.config import settings
 
-                if settings.GEMINI_API_KEY:
+                if settings.AI_API_KEY:
                     task_status.message = "Enriching insights with AI..."
                     task_status.progress = 95.0
 
@@ -215,11 +215,41 @@ class AnalysisOrchestrator:
                         await db.commit()
                         logger.info("ai_enrichment_completed", enriched=len(enrichments))
                 else:
-                    logger.info("ai_enrichment_skipped", reason="GEMINI_API_KEY not configured")
+                    logger.info("ai_enrichment_skipped", reason="AI_API_KEY not configured")
 
             except Exception as ai_err:
                 # AI enrichment is non-critical — log and continue
                 logger.warning("ai_enrichment_failed", error=str(ai_err))
+
+            # 6. Semantic Embeddings (Background processing of chunks)
+            try:
+                task_status.message = "Generating semantic embeddings..."
+                task_status.progress = 98.0
+                
+                from app.services.embedding_service import EmbeddingService
+                from app.services.ast_service import ASTService
+                
+                total_embeddings = 0
+                for fpath in repo_path.rglob("*"):
+                    if fpath.is_file() and ASTService.get_language_from_extension(fpath):
+                        parsed_file = ASTService.parse_file(fpath)
+                        if parsed_file:
+                            # Adjust filepath to be relative to repo_path
+                            rel_path = fpath.relative_to(repo_path)
+                            parsed_file.filepath = str(rel_path)
+                            count = await EmbeddingService.process_parsed_file(
+                                db=db,
+                                repo_id=repo.id,
+                                analysis_id=analysis.id,
+                                parsed_file=parsed_file,
+                                base_path=repo_path
+                            )
+                            total_embeddings += count
+                            
+                logger.info("embeddings_generated", total=total_embeddings)
+
+            except Exception as emb_err:
+                logger.warning("embeddings_failed", error=str(emb_err))
 
         except Exception as e:
             # Handle Failures

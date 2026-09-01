@@ -9,7 +9,8 @@ sqlalchemy==2.0.41
 alembic==1.16.2
 asyncpg==0.31.0
 aiosqlite==0.21.0
-psycopg2-binary==2.9.10
+psycopg[binary]
+pgvector==0.3.6
 
 # Authentication
 python-jose[cryptography]==3.4.0
@@ -39,7 +40,9 @@ tree-sitter-go==0.25.0
 tree-sitter-rust==0.24.2
 
 # AI / LLM
-google-genai==1.16.1
+openai==1.59.3
+torch
+sentence-transformers
 
 # Utilities
 structlog==25.4.0
