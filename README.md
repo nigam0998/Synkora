@@ -1,7 +1,6 @@
-
 <div align="center">
 
-# 🧬 Synkora
+# Synkora
 
 **AI-Powered Software Evolution Intelligence Platform**
 
@@ -17,28 +16,28 @@
 
 ---
 
-## 🌟 What is Synkora?
+## What is Synkora?
 
 Synkora is an **enterprise-grade DevTools SaaS platform** that analyzes GitHub repositories to understand the complete evolution of software projects. It combines static code analysis, Git history mining, knowledge graphs, vector search, AI agents, and large language models to deliver deep architectural insights.
 
-### 🎯 Key Capabilities
+### Key Capabilities
 
 | Feature | Description |
 |---------|-------------|
-| 🏗️ **Architecture Reconstruction** | Auto-generate architecture diagrams from code |
-| 📊 **Code Evolution Timeline** | Visualize how your codebase evolved over time |
-| 🔍 **Semantic Code Search** | Natural-language search across your entire codebase |
-| 🤖 **AI Code Assistant** | Context-aware AI chat that understands your repo |
-| 🕸️ **Dependency Graph** | Interactive visualization of all dependencies |
-| 🐛 **Bug Prediction** | Identify high-risk files before bugs appear |
-| 📝 **Auto Documentation** | Generate documentation from code analysis |
-| ⚠️ **Technical Debt Detection** | Find and prioritize code smells and debt |
-| 🔒 **Security Scanning** | Detect common vulnerability patterns |
-| 👥 **Team Analytics** | Contribution patterns and collaboration insights |
+| **Architecture Reconstruction** | Auto-generate architecture diagrams from code |
+| **Code Evolution Timeline** | Visualize how your codebase evolved over time |
+| **Semantic Code Search** | Natural-language search across your entire codebase |
+| **AI Code Assistant** | Context-aware AI chat that understands your repo |
+| **Dependency Graph** | Interactive visualization of all dependencies |
+| **Bug Prediction** | Identify high-risk files before bugs appear |
+| **Auto Documentation** | Generate documentation from code analysis |
+| **Technical Debt Detection** | Find and prioritize code smells and debt |
+| **Security Scanning** | Detect common vulnerability patterns |
+| **Team Analytics** | Contribution patterns and collaboration insights |
 
 ---
 
-## 🏛️ Architecture
+## Architecture
 
 ```
 synkora/
@@ -65,7 +64,7 @@ synkora/
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **Next.js 15** — React framework with App Router & Server Components
@@ -92,7 +91,7 @@ synkora/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -146,13 +145,13 @@ The `deploy.sh` script will automatically pull the latest code, build the optimi
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a pull request.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
 
@@ -160,7 +159,7 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 <div align="center">
 
-**Built with ❤️ by Devyansh Nigam**
+**Built with dedication by Devyansh Nigam**
 
 *Understand your code. Evolve your software.*
 
