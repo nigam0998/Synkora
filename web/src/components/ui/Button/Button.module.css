@@ -1,5 +1,5 @@
 /*
- * Synkora — Button Component Styles
+ * Synkora — Button Component Styles (Apple Glassmorphism)
  */
 
 .button {
@@ -8,18 +8,19 @@
   justify-content: center;
   gap: var(--space-2);
   font-family: var(--font-sans);
-  font-weight: 600;
+  font-weight: 500;
   border: none;
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: all var(--transition-fast);
   text-decoration: none;
   white-space: nowrap;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 .button:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
   transform: none !important;
   box-shadow: none !important;
@@ -27,64 +28,67 @@
 
 /* ── Sizes ───────────────────────────────────────────── */
 .sm {
-  padding: var(--space-1) var(--space-4);
+  padding: var(--space-1) var(--space-3);
   font-size: var(--text-sm);
-  border-radius: var(--radius-sm);
-  height: 32px;
+  border-radius: 9999px; /* Fully rounded pill */
+  height: 28px;
 }
 
 .md {
-  padding: var(--space-2) var(--space-6);
+  padding: var(--space-2) var(--space-5);
   font-size: var(--text-sm);
-  border-radius: var(--radius-md);
-  height: 40px;
+  border-radius: 9999px;
+  height: 36px;
 }
 
 .lg {
-  padding: var(--space-3) var(--space-8);
+  padding: var(--space-3) var(--space-6);
   font-size: var(--text-base);
-  border-radius: var(--radius-lg);
-  height: 48px;
+  border-radius: 9999px;
+  height: 44px;
 }
 
 .xl {
-  padding: var(--space-4) var(--space-10);
+  padding: var(--space-4) var(--space-8);
   font-size: var(--text-lg);
-  border-radius: var(--radius-lg);
-  height: 56px;
+  border-radius: 9999px;
+  height: 52px;
 }
 
 /* ── Variants ────────────────────────────────────────── */
 .primary {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background: var(--color-primary); /* Flat iOS Blue */
   color: white;
-  box-shadow: var(--shadow-glow-primary);
 }
 
 .primary:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px var(--color-primary-glow), 0 0 80px rgba(108, 92, 231, 0.15);
+  background: var(--color-primary-light);
 }
 
 .primary:active:not(:disabled) {
-  transform: translateY(0);
+  transform: scale(0.96);
 }
 
 .secondary {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.1); /* Frosted glass approach */
   color: var(--color-text-primary);
-  border: 1px solid var(--color-border-hover);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .secondary:hover:not(:disabled) {
-  background: var(--color-bg-glass);
-  border-color: var(--color-primary-light);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.secondary:active:not(:disabled) {
+  transform: scale(0.96);
 }
 
 .ghost {
   background: transparent;
   color: var(--color-text-secondary);
+  box-shadow: none;
 }
 
 .ghost:hover:not(:disabled) {
@@ -92,25 +96,35 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
+.ghost:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
 .danger {
-  background: linear-gradient(135deg, var(--color-error), #D32F2F);
+  background: var(--color-error);
   color: white;
 }
 
 .danger:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(255, 82, 82, 0.3);
+  background: var(--color-error-light);
+}
+
+.danger:active:not(:disabled) {
+  transform: scale(0.96);
 }
 
 .accent {
-  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  background: var(--color-text-primary); /* iOS High Contrast White button */
   color: var(--color-bg-primary);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .accent:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-glow-accent);
+  background: #E5E5EA;
+}
+
+.accent:active:not(:disabled) {
+  transform: scale(0.96);
 }
 
 /* ── Full Width ──────────────────────────────────────── */
@@ -134,10 +148,14 @@
 
 /* ── Icon Only ───────────────────────────────────────── */
 .iconOnly {
-  padding: var(--space-2);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   aspect-ratio: 1;
+  border-radius: 50%; /* Perfect circles for icon buttons */
 }
 
-.iconOnly.sm { width: 32px; height: 32px; }
-.iconOnly.md { width: 40px; height: 40px; }
-.iconOnly.lg { width: 48px; height: 48px; }
+.iconOnly.sm { width: 28px; height: 28px; }
+.iconOnly.md { width: 36px; height: 36px; }
+.iconOnly.lg { width: 44px; height: 44px; }

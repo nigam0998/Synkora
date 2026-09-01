@@ -4,30 +4,34 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
+import { 
+  LayoutDashboard, FolderOpen, Activity, Lightbulb, 
+  Bot, Search, Network, Settings, Dna 
+} from "lucide-react";
 import styles from "./Sidebar.module.css";
 
 interface NavItem {
   label: string;
   href: string;
-  icon: string;
+  icon: React.ReactNode;
   badge?: string;
 }
 
 const mainNav: NavItem[] = [
-  { label: "Dashboard", href: "/dashboard", icon: "📊" },
-  { label: "Repositories", href: "/dashboard/repos", icon: "📂" },
-  { label: "Analysis", href: "/dashboard/analysis", icon: "🔬" },
-  { label: "Insights", href: "/dashboard/insights", icon: "💡" },
+  { label: "Dashboard", href: "/dashboard", icon: <LayoutDashboard size={18} /> },
+  { label: "Repositories", href: "/dashboard/repos", icon: <FolderOpen size={18} /> },
+  { label: "Analysis", href: "/dashboard/analysis", icon: <Activity size={18} /> },
+  { label: "Insights", href: "/dashboard/insights", icon: <Lightbulb size={18} /> },
 ];
 
 const toolsNav: NavItem[] = [
-  { label: "AI Assistant", href: "/dashboard/chat", icon: "🤖", badge: "Beta" },
-  { label: "Code Search", href: "/dashboard/search", icon: "🔍" },
-  { label: "Dep Graph", href: "/dashboard/dependencies", icon: "🕸️" },
+  { label: "AI Assistant", href: "/dashboard/chat", icon: <Bot size={18} />, badge: "Beta" },
+  { label: "Code Search", href: "/dashboard/search", icon: <Search size={18} /> },
+  { label: "Dep Graph", href: "/dashboard/dependencies", icon: <Network size={18} /> },
 ];
 
 const bottomNav: NavItem[] = [
-  { label: "Settings", href: "/dashboard/settings", icon: "⚙️" },
+  { label: "Settings", href: "/dashboard/settings", icon: <Settings size={18} /> },
 ];
 
 interface SidebarProps {
@@ -65,7 +69,7 @@ export function Sidebar({ isOpen }: SidebarProps) {
     <aside className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ""}`}>
       {/* Logo */}
       <Link href="/dashboard" className={styles.logo}>
-        <span className={styles.logoIcon}>🧬</span>
+        <span className={styles.logoIcon}><Dna size={24} color="var(--color-primary)" /></span>
         <span className={styles.logoText}>Synkora</span>
       </Link>
 

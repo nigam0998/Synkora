@@ -1,54 +1,51 @@
 /*
  * ══════════════════════════════════════════════════════════════════════
- * Synkora — Global Design System
+ * Synkora — Global Design System (iOS Glassmorphism Theme)
  * ══════════════════════════════════════════════════════════════════════
- * Core CSS variables, reset, typography, and global styles.
- * All design tokens are defined here for consistency.
  */
 
-/* ── Google Fonts ────────────────────────────────────────────────────── */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap");
+/* ── Google Fonts (Fallback if system fonts aren't available) ────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
-/* ── CSS Custom Properties (Design Tokens) ───────────────────────────── */
 :root {
-  /* ── Brand Colors ───────────────────────────────────────────── */
-  --color-primary: #6C5CE7;
-  --color-primary-light: #A29BFE;
-  --color-primary-dark: #4834D4;
-  --color-primary-glow: rgba(108, 92, 231, 0.3);
+  /* ── Apple Inspired Color Palette (Dark Mode Default) ──────── */
+  --color-primary: #0A84FF;       /* iOS Blue */
+  --color-primary-light: #5E5CE6; /* iOS Indigo */
+  --color-primary-dark: #0040DD;
+  --color-primary-glow: rgba(10, 132, 255, 0.2);
 
-  --color-accent: #00D2FF;
-  --color-accent-light: #7EFAFF;
-  --color-accent-dark: #0097B2;
-  --color-accent-glow: rgba(0, 210, 255, 0.25);
+  --color-accent: #32D74B;        /* iOS Green */
+  --color-accent-light: #30D158;
+  --color-accent-dark: #248A3D;
+  --color-accent-glow: rgba(50, 215, 75, 0.2);
 
-  --color-success: #00E676;
-  --color-success-light: #69F0AE;
-  --color-warning: #FFD600;
-  --color-warning-light: #FFFF00;
-  --color-error: #FF5252;
-  --color-error-light: #FF8A80;
+  --color-success: #32D74B;
+  --color-success-light: #30D158;
+  --color-warning: #FFD60A;       /* iOS Yellow */
+  --color-warning-light: #FFD60A;
+  --color-error: #FF453A;         /* iOS Red */
+  --color-error-light: #FF6961;
 
-  /* ── Neutral Palette (Dark Mode Default) ────────────────────── */
-  --color-bg-primary: #0A0A1A;
-  --color-bg-secondary: #11112B;
-  --color-bg-tertiary: #1A1A3E;
-  --color-bg-elevated: #1E1E4A;
-  --color-bg-glass: rgba(26, 26, 62, 0.7);
-  --color-bg-card: rgba(30, 30, 74, 0.5);
+  /* ── Neutral Backgrounds ────────────────────────────────────── */
+  --color-bg-primary: #000000;    /* Pure black */
+  --color-bg-secondary: #1C1C1E;  /* Elevated black */
+  --color-bg-tertiary: #2C2C2E;   /* Tertiary black */
+  --color-bg-elevated: #3A3A3C;
+  --color-bg-glass: rgba(28, 28, 30, 0.65);
+  --color-bg-card: rgba(28, 28, 30, 0.4);
 
-  --color-border: rgba(108, 92, 231, 0.15);
-  --color-border-hover: rgba(108, 92, 231, 0.35);
-  --color-border-active: rgba(108, 92, 231, 0.6);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-hover: rgba(255, 255, 255, 0.2);
+  --color-border-active: rgba(255, 255, 255, 0.3);
 
-  --color-text-primary: #F0F0FF;
-  --color-text-secondary: #A0A0CC;
-  --color-text-tertiary: #6B6B99;
-  --color-text-inverse: #0A0A1A;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: rgba(235, 235, 245, 0.6);
+  --color-text-tertiary: rgba(235, 235, 245, 0.3);
+  --color-text-inverse: #000000;
 
-  /* ── Typography ─────────────────────────────────────────────── */
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  /* ── Typography (Apple SF Pro Stack) ────────────────────────── */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Inter", sans-serif;
+  --font-mono: "SF Mono", "JetBrains Mono", "Menlo", monospace;
 
   --text-xs: 0.75rem;      /* 12px */
   --text-sm: 0.875rem;     /* 14px */
@@ -80,26 +77,29 @@
   --space-20: 5rem;        /* 80px */
   --space-24: 6rem;        /* 96px */
 
-  /* ── Border Radius ──────────────────────────────────────────── */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  /* ── Border Radius (Smooth continuous curves) ───────────────── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-full: 9999px;
 
-  /* ── Shadows ────────────────────────────────────────────────── */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
-  --shadow-glow-primary: 0 0 20px var(--color-primary-glow), 0 0 60px rgba(108, 92, 231, 0.1);
-  --shadow-glow-accent: 0 0 20px var(--color-accent-glow), 0 0 60px rgba(0, 210, 255, 0.1);
+  /* ── Shadows (Soft, diffused) ───────────────────────────────── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.4);
+  
+  --shadow-glow-primary: 0 0 15px var(--color-primary-glow);
+  --shadow-glow-accent: 0 0 15px var(--color-accent-glow);
+
+  /* ── Inner Borders (Glassmorphism highlight) ────────────────── */
+  --inner-border: inset 0 1px 1px rgba(255, 255, 255, 0.15);
 
   /* ── Transitions ────────────────────────────────────────────── */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 150ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
 
   /* ── Z-Index Scale ──────────────────────────────────────────── */
   --z-base: 0;
@@ -113,9 +113,7 @@
 }
 
 /* ── CSS Reset ────────────────────────────────────────────────────────── */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -139,36 +137,30 @@ body {
 }
 
 /* ── Animated Background ──────────────────────────────────────────────── */
+/* Replaced harsh radial glow with a deep, subtle mesh-like dark background */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 40%, rgba(108, 92, 231, 0.08), transparent 50%),
-    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(0, 210, 255, 0.06), transparent 50%),
-    radial-gradient(ellipse 50% 60% at 50% 80%, rgba(108, 92, 231, 0.04), transparent 50%);
-  animation: bgShift 20s ease-in-out infinite alternate;
-}
-
-@keyframes bgShift {
-  0% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
-  100% { opacity: 0.6; transform: scale(1); }
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(28, 28, 30, 0.8), transparent 50%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(28, 28, 30, 0.8), transparent 50%);
+  opacity: 0.8;
 }
 
 /* ── Typography Base ──────────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
+  font-weight: 600;
   line-height: var(--leading-tight);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   color: var(--color-text-primary);
 }
 
-h1 { font-size: var(--text-5xl); }
-h2 { font-size: var(--text-4xl); }
-h3 { font-size: var(--text-3xl); }
-h4 { font-size: var(--text-2xl); }
+h1 { font-size: var(--text-5xl); letter-spacing: -0.02em; }
+h2 { font-size: var(--text-4xl); letter-spacing: -0.02em; }
+h3 { font-size: var(--text-3xl); letter-spacing: -0.015em; }
+h4 { font-size: var(--text-2xl); letter-spacing: -0.01em; }
 h5 { font-size: var(--text-xl); }
 h6 { font-size: var(--text-lg); }
 
@@ -178,13 +170,13 @@ p {
 }
 
 a {
-  color: var(--color-primary-light);
+  color: var(--color-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--color-accent);
+  color: var(--color-primary-light);
 }
 
 code, pre {
@@ -193,7 +185,7 @@ code, pre {
 }
 
 pre {
-  background: var(--color-bg-tertiary);
+  background: var(--color-bg-secondary);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-4);
@@ -201,9 +193,9 @@ pre {
 }
 
 code {
-  background: var(--color-bg-tertiary);
+  background: var(--color-bg-secondary);
   border-radius: var(--radius-sm);
-  padding: 0.15em 0.4em;
+  padding: 0.2em 0.4em;
   font-size: 0.9em;
 }
 
@@ -222,43 +214,26 @@ pre code {
 
 .glass {
   background: var(--color-bg-glass);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
   border: 1px solid var(--color-border);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.glow-primary {
-  box-shadow: var(--shadow-glow-primary);
-}
-
-.glow-accent {
-  box-shadow: var(--shadow-glow-accent);
+  box-shadow: var(--shadow-md), var(--inner-border);
 }
 
 /* ── Scrollbar ────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: var(--color-bg-tertiary);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-full);
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-primary);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* ── Selection ────────────────────────────────────────────────────────── */
@@ -273,53 +248,6 @@ pre code {
   outline-offset: 2px;
 }
 
-/* ── Animations ───────────────────────────────────────────────────────── */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-30px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s var(--transition-base) forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-pulse {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.animate-float {
-  animation: float 4s ease-in-out infinite;
-}
-
 /* ── Media Queries ────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   :root {
@@ -327,22 +255,15 @@ pre code {
     --text-4xl: 1.875rem;
     --text-3xl: 1.5rem;
   }
-
   .container {
     padding: 0 var(--space-4);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-
-  body::before {
-    animation: none;
   }
 }

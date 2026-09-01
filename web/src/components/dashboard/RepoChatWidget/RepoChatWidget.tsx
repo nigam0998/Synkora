@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Sparkles, Send } from "lucide-react";
 import { api } from "@/lib/api";
 import styles from "./RepoChatWidget.module.css";
 
@@ -96,7 +97,7 @@ export function RepoChatWidget({ repositoryId }: { repositoryId: string }) {
       {isOpen && (
         <div className={styles.chatWindow}>
           <div className={styles.chatHeader}>
-            <h3>✨ Codebase Copilot</h3>
+            <h3><Sparkles size={18} style={{ marginRight: '8px' }} /> Codebase Copilot</h3>
             <button className={styles.closeButton} onClick={toggleChat} aria-label="Close chat">
               &times;
             </button>
@@ -189,10 +190,7 @@ export function RepoChatWidget({ repositoryId }: { repositoryId: string }) {
               rows={1}
             />
             <button type="submit" className={styles.sendButton} disabled={!input.trim() || isLoading}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
+              <Send size={18} />
             </button>
           </form>
         </div>
@@ -200,7 +198,7 @@ export function RepoChatWidget({ repositoryId }: { repositoryId: string }) {
 
       {!isOpen && (
         <button className={styles.toggleButton} onClick={toggleChat} aria-label="Open chat">
-          ✨
+          <Sparkles size={24} />
         </button>
       )}
     </div>

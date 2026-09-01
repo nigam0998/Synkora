@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Sparkles } from "lucide-react";
 import { api } from "@/lib/api";
 import styles from "./InsightsList.module.css";
 
@@ -78,7 +79,7 @@ export function InsightsList({ insights: initialInsights }: InsightsListProps) {
                 onClick={() => handleGenerateFix(insight.id)}
                 disabled={loadingMap[insight.id]}
               >
-                {loadingMap[insight.id] ? <div className={styles.loadingSpinner} /> : "✨"}
+                {loadingMap[insight.id] ? <div className={styles.loadingSpinner} /> : <Sparkles size={16} />}
                 {loadingMap[insight.id] ? "Generating AI Refactoring..." : "Generate AI Fix"}
               </button>
             )}
@@ -86,7 +87,7 @@ export function InsightsList({ insights: initialInsights }: InsightsListProps) {
             {isAiGenerated && (
               <div className={`${styles.recommendation} ${styles.markdownContent}`}>
                 <div className={styles.aiHeader}>
-                  ✨ AI Refactoring Suggestion
+                  <Sparkles size={16} style={{ marginRight: '6px' }} /> AI Refactoring Suggestion
                 </div>
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
