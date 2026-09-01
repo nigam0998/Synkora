@@ -2,7 +2,8 @@
 Synkora API — AI Router
 
 Endpoints for AI-powered code analysis features:
-  - POST /{repo_id}/enrich: Enrich the latest analysis with AI refactoring advice
+  - POST /{repo_id}/enrich: Enrich the latest analysis with AI refactoring advice (all high/critical)
+  - POST /insight/{insight_id}/enrich: Enrich a single insight on demand
   - GET  /{repo_id}/summary: Generate an AI executive summary of repo health
 """
 
@@ -111,6 +112,58 @@ async def enrich_insights(
         "enriched_count": enriched_count,
         "analysis_id": analysis.id,
     }
+
+
+@router.post("/insight/{insight_id}/enrich")
+async def enrich_single_insight(
+    insight_id: str,
+    current_user: dict = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Use Gemini AI to enrich a single specific insight with
+    actionable refactoring advice on demand.
+    """
+    # Fetch insight
+    result = await db.execute(select(Insight).where(Insight.id == insight_id))
+    insight = result.scalar_one_or_none()
+    if not insight:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Insight not found")
+
+    # Authorize: ensure the user owns the repository the insight belongs to
+    analysis_result = await db.execute(select(Analysis).where(Analysis.id == insight.analysis_id))
+    analysis = analysis_result.scalar_one_or_none()
+    if not analysis:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Analysis not found")
+        
+    await _get_repo_or_404(db, analysis.repository_id, current_user["id"])
+
+    # Convert DB Insight → TechDebtIssue for the AI service
+    issue = TechDebtIssue(
+        issue_id=insight.id,
+        rule_name=insight.title.split(" in ")[0] if " in " in insight.title else insight.title,
+        description=insight.description,
+        severity=insight.severity,
+        file_path=insight.file_path or "unknown",
+        start_line=insight.line_start,
+        end_line=insight.line_end,
+        related_metrics=insight.metadata_json or {},
+    )
+
+    advice = await AIService.enrich_insight(issue)
+
+    # Persist the AI-generated recommendation back to the DB
+    insight.recommendation = advice
+    insight.confidence = 0.85  # Gemini-generated
+    await db.commit()
+
+    logger.info("single_insight_enriched", insight_id=insight.id)
+
+    return {
+        "message": "Successfully generated AI refactoring advice",
+        "recommendation": advice,
+    }
+
 
 
 @router.get("/{repo_id}/summary")
