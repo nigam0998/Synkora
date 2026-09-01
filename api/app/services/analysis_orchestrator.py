@@ -27,6 +27,7 @@ from app.services.metrics_service import MetricsService
 from app.services.dependency_service import DependencyService
 from app.services.git_history_service import GitHistoryService
 from app.services.tech_debt_service import TechDebtService
+from app.services.security_service import SecurityService
 
 logger = get_logger("analysis_orchestrator")
 
@@ -153,6 +154,28 @@ class AnalysisOrchestrator:
                     line_end=issue.end_line,
                     impact_score=issue.estimated_remediation_minutes / 60.0,
                     metadata_json=issue.related_metrics
+                )
+                db.add(insight)
+
+            # Map Security Issues to Insights
+            logger.info("running_security_scan", repo=repo.full_name)
+            task_status.message = "Running security analysis..."
+            task_status.progress = 92.0
+            security_issues = await SecurityService.scan_repository(repo_path)
+            
+            for sec_issue in security_issues:
+                insight = Insight(
+                    analysis_id=analysis.id,
+                    category="security",
+                    severity=sec_issue.severity,
+                    title=sec_issue.rule_name,
+                    description=sec_issue.description,
+                    recommendation="Review the affected code and ensure input validation or secure configuration is applied.",
+                    file_path=sec_issue.file_path,
+                    line_start=sec_issue.start_line,
+                    line_end=sec_issue.end_line,
+                    impact_score=1.0 if sec_issue.severity == "critical" else (0.8 if sec_issue.severity == "high" else 0.5),
+                    metadata_json={"scanner": "bandit"}
                 )
                 db.add(insight)
 
