@@ -9,6 +9,7 @@ import styles from "../../dashboard.module.css";
 import { LanguageChart } from "@/components/dashboard/AnalysisCharts/LanguageChart";
 import { TechDebtChart } from "@/components/dashboard/AnalysisCharts/TechDebtChart";
 import { InsightsList, Insight } from "@/components/dashboard/InsightsList/InsightsList";
+import { RepoChatWidget } from "@/components/dashboard/RepoChatWidget/RepoChatWidget";
 
 interface Repository {
   id: string;
@@ -200,6 +201,9 @@ export default function RepoDashboardPage() {
           </div>
         )}
       </div>
+
+      {/* Floating Chat Widget */}
+      <RepoChatWidget repositoryId={repo.id} />
     </ProtectedRoute>
   );
 }
