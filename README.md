@@ -162,9 +162,11 @@ docker-compose up -d
 - [x] **Day 20**: AI Chat Interface (Frontend, Floating Codebase Copilot widget)
 - [x] **Day 21**: Auto-Refactoring Suggestions (On-demand UI and API endpoint)
 
-### Week 4: Polish, Testing & Deployment (⬜ Planned)
-- **Focus**: Security scanning, Docker, CI/CD, production deployment.
-
+### Week 4: Polish, Testing & Deployment (🟡 In Progress)
+- [x] **Day 22**: Security Scanning Engine (Bandit for Python)
+- [ ] **Day 23**: CI/CD Pipelines (GitHub Actions)
+- [ ] **Day 24**: Dockerization & Environment Config
+- [ ] **Day 25**: Production Deployment Preparation
 ---
 
 ## 🤝 Contributing
