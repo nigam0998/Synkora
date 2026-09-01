@@ -144,7 +144,7 @@ docker-compose up -d
 - [x] **Day 6**: GitHub API Integration (OAuth, Repo CRUD, RepoBrowser Modal)
 - [x] **Day 7**: Repository Webhooks & Cloning (Webhook Verification, Clone Service, Background Tasks)
 
-### Week 2: Code Analysis Engine (🟡 In Progress)
+### Week 2: Code Analysis Engine (✅ Completed)
 - [x] **Day 8**: AST Parsing with Tree-sitter (Python, JS, TS, Go, Rust — functions, classes, imports)
 - [x] **Day 9**: Code Metrics Engine (Cyclomatic/Cognitive Complexity, Maintainability Index, Tech Debt)
 - [x] **Day 10**: Dependency Graph Builder (Import Resolution, Cycle Detection, Coupling Metrics)
@@ -154,11 +154,11 @@ docker-compose up -d
 - [x] **Day 14**: Analysis Results UI (dashboards, charts)
 
 ### Week 3: AI & Intelligence Layer (🟡 In Progress)
-- [x] **Day 15**: Gemini AI Integration (AIService, insight enrichment, repo health summaries)
-- [ ] **Day 16**: Vector Embeddings & pgvector
-- [ ] **Day 17**: Semantic Code Search API
-- [ ] **Day 18**: Semantic Search UI
-- [ ] **Day 19**: Context-Aware AI Chat Assistant (Backend)
+- [x] **Day 15**: AI Integration (AIService via OpenRouter/DeepSeek, insight enrichment, repo health summaries)
+- [x] **Day 16**: Vector Embeddings & pgvector (CodeEmbedding model, sentence-transformers, pipeline integration)
+- [x] **Day 17**: Semantic Code Search API (cosine similarity search, search status endpoint)
+- [x] **Day 18**: AI Chat Interface — RAG Backend (retrieval-augmented generation, code-grounded Q&A)
+- [x] **Day 19**: WebSocket Real-time Events (ConnectionManager, live pipeline progress)
 - [ ] **Day 20**: AI Chat Interface (Frontend)
 - [ ] **Day 21**: Auto-Refactoring Suggestions
 
