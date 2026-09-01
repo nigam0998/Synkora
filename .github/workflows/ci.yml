@@ -1,0 +1,67 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  frontend-check:
+    name: Frontend (Next.js) Build & Lint
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+        cache-dependency-path: './web/package-lock.json'
+        
+    # We will use npm install since we don't have a package-lock.json checked in initially
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run ESLint
+      run: npm run lint
+      
+    - name: Test Production Build
+      run: npm run build
+
+  backend-check:
+    name: Backend (FastAPI) Syntax & Security
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./api
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+        cache: 'pip'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Python Syntax Check
+      run: |
+        python -m compileall .
+        
+    - name: Run Security Scan (Bandit)
+      run: |
+        bandit -r . -f custom -c "bandit.yaml" || true
+        # We use || true so that the pipeline doesn't fail on warnings for now, 
+        # as we are just establishing the baseline. Later this can be enforced.
+        bandit -r app -ll
