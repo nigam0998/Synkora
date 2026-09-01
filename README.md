@@ -124,12 +124,25 @@ cp .env.example .env           # Configure environment
 uvicorn app.main:app --reload  # Starts on http://localhost:8000
 ```
 
-### Docker (Recommended)
+### Docker (Local Development)
 
 ```bash
-# Coming Day 28 — full Docker setup
 docker-compose up -d
 ```
+
+### Production Deployment
+
+To deploy Synkora to a production server (e.g., AWS EC2, DigitalOcean):
+
+1. Clone the repository on your server.
+2. Copy `.env.example` to `.env` and fill in your secure credentials (like `SECRET_KEY`, `GITHUB_CLIENT_SECRET`, and `AI_API_KEY`).
+3. Run the automated deployment script:
+   ```bash
+   chmod +x deployment/deploy.sh
+   ./deployment/deploy.sh
+   ```
+
+The `deploy.sh` script will automatically pull the latest code, build the optimized Docker images, and start the cluster with an **Nginx** reverse proxy handling traffic on port 80.
 
 ---
 
@@ -166,7 +179,7 @@ docker-compose up -d
 - [x] **Day 22**: Security Scanning Engine (Bandit for Python)
 - [x] **Day 23**: CI/CD Pipelines (GitHub Actions)
 - [x] **Day 24**: Dockerization & Environment Config
-- [ ] **Day 25**: Production Deployment Preparation
+- [x] **Day 25**: Production Deployment Preparation
 ---
 
 ## 🤝 Contributing
