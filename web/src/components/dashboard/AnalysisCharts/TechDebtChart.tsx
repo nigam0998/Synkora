@@ -38,8 +38,8 @@ export function TechDebtChart({ data }: TechDebtChartProps) {
               borderRadius: "var(--radius-md)",
               color: "var(--color-text-primary)"
             }}
-            formatter={(value: number) => [`${value.toFixed(1)} hours`, "Tech Debt"]}
-            labelStyle={{ color: "var(--color-text-secondary)" }}
+            formatter={(value: any) => [`${value} hrs`, "Debt Score"]}
+            labelFormatter={(label) => `Date: ${label}`}
           />
           <Line 
             type="monotone" 

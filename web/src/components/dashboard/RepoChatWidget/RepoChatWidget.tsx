@@ -125,7 +125,7 @@ export function RepoChatWidget({ repositoryId }: { repositoryId: string }) {
                           const match = /language-(\w+)/.exec(className || "");
                           return !inline && match ? (
                             <SyntaxHighlighter
-                              style={vscDarkPlus as unknown as { [key: string]: React.CSSProperties }}
+                              style={vscDarkPlus as any}
                               language={match[1]}
                               PreTag="div"
                               {...props}
