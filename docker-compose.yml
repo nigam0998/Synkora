@@ -1,0 +1,73 @@
+services:
+  db:
+    image: ankane/pgvector:v0.5.1
+    # We use a specific version for stability
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-synkora}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-synkora_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - synkora_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-synkora}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - synkora_redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      # Sync with docker-compose database
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-synkora}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-synkora_db}
+      REDIS_URL: redis://redis:6379/0
+      # Use an environment variable for secret keys
+      SECRET_KEY: ${SECRET_KEY:-"09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"}
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+      AI_PROVIDER: ${AI_PROVIDER:-deepseek}
+      AI_API_KEY: ${AI_API_KEY}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    # For local development:
+    # volumes:
+    #   - ./api:/app
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    depends_on:
+      - api
+    # For local development:
+    # volumes:
+    #   - ./web:/app
+    #   - /app/node_modules
+
+volumes:
+  synkora_db_data:
+  synkora_redis_data:
