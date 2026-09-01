@@ -160,7 +160,7 @@ docker-compose up -d
 - [x] **Day 18**: AI Chat Interface — RAG Backend (retrieval-augmented generation, code-grounded Q&A)
 - [x] **Day 19**: WebSocket Real-time Events (ConnectionManager, live pipeline progress)
 - [x] **Day 20**: AI Chat Interface (Frontend, Floating Codebase Copilot widget)
-- [ ] **Day 21**: Auto-Refactoring Suggestions
+- [x] **Day 21**: Auto-Refactoring Suggestions (On-demand UI and API endpoint)
 
 ### Week 4: Polish, Testing & Deployment (⬜ Planned)
 - **Focus**: Security scanning, Docker, CI/CD, production deployment.
