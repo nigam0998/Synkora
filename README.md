@@ -153,7 +153,7 @@ docker-compose up -d
 - [x] **Day 13**: Analysis Pipeline Orchestration
 - [x] **Day 14**: Analysis Results UI (dashboards, charts)
 
-### Week 3: AI & Intelligence Layer (🟡 In Progress)
+### Week 3: AI & Intelligence Layer (✅ Completed)
 - [x] **Day 15**: AI Integration (AIService via OpenRouter/DeepSeek, insight enrichment, repo health summaries)
 - [x] **Day 16**: Vector Embeddings & pgvector (CodeEmbedding model, sentence-transformers, pipeline integration)
 - [x] **Day 17**: Semantic Code Search API (cosine similarity search, search status endpoint)
