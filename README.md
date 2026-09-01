@@ -159,7 +159,7 @@ docker-compose up -d
 - [x] **Day 17**: Semantic Code Search API (cosine similarity search, search status endpoint)
 - [x] **Day 18**: AI Chat Interface — RAG Backend (retrieval-augmented generation, code-grounded Q&A)
 - [x] **Day 19**: WebSocket Real-time Events (ConnectionManager, live pipeline progress)
-- [ ] **Day 20**: AI Chat Interface (Frontend)
+- [x] **Day 20**: AI Chat Interface (Frontend, Floating Codebase Copilot widget)
 - [ ] **Day 21**: Auto-Refactoring Suggestions
 
 ### Week 4: Polish, Testing & Deployment (⬜ Planned)
