@@ -146,42 +146,6 @@ The `deploy.sh` script will automatically pull the latest code, build the optimi
 
 ---
 
-## 📅 Development Roadmap
-
-### Week 1: Foundation & Core Infrastructure (✅ Complete)
-- [x] **Day 1**: Monorepo Scaffolding, Next.js & FastAPI setup, Global CSS Design System
-- [x] **Day 2**: UI Component Library, Landing Page Polish, Scroll Animations
-- [x] **Day 3**: Authentication System (JWT, bcrypt, PostgreSQL integration, Protected Routes)
-- [x] **Day 4**: Database & ORM Setup (Async SQLAlchemy, Domain Models, SQLite fallback)
-- [x] **Day 5**: User Dashboard & Settings (Sidebar, Stats Grid, Repo Cards, Settings Tabs)
-- [x] **Day 6**: GitHub API Integration (OAuth, Repo CRUD, RepoBrowser Modal)
-- [x] **Day 7**: Repository Webhooks & Cloning (Webhook Verification, Clone Service, Background Tasks)
-
-### Week 2: Code Analysis Engine (✅ Completed)
-- [x] **Day 8**: AST Parsing with Tree-sitter (Python, JS, TS, Go, Rust — functions, classes, imports)
-- [x] **Day 9**: Code Metrics Engine (Cyclomatic/Cognitive Complexity, Maintainability Index, Tech Debt)
-- [x] **Day 10**: Dependency Graph Builder (Import Resolution, Cycle Detection, Coupling Metrics)
-- [x] **Day 11**: Git History Mining (commit analysis, contributor stats, code churn)
-- [x] **Day 12**: Technical Debt Detection
-- [x] **Day 13**: Analysis Pipeline Orchestration
-- [x] **Day 14**: Analysis Results UI (dashboards, charts)
-
-### Week 3: AI & Intelligence Layer (✅ Completed)
-- [x] **Day 15**: AI Integration (AIService via OpenRouter/DeepSeek, insight enrichment, repo health summaries)
-- [x] **Day 16**: Vector Embeddings & pgvector (CodeEmbedding model, sentence-transformers, pipeline integration)
-- [x] **Day 17**: Semantic Code Search API (cosine similarity search, search status endpoint)
-- [x] **Day 18**: AI Chat Interface — RAG Backend (retrieval-augmented generation, code-grounded Q&A)
-- [x] **Day 19**: WebSocket Real-time Events (ConnectionManager, live pipeline progress)
-- [x] **Day 20**: AI Chat Interface (Frontend, Floating Codebase Copilot widget)
-- [x] **Day 21**: Auto-Refactoring Suggestions (On-demand UI and API endpoint)
-
-### Week 4: Polish, Testing & Deployment (🟡 In Progress)
-- [x] **Day 22**: Security Scanning Engine (Bandit for Python)
-- [x] **Day 23**: CI/CD Pipelines (GitHub Actions)
-- [x] **Day 24**: Dockerization & Environment Config
-- [x] **Day 25**: Production Deployment Preparation
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting a pull request.
@@ -196,7 +160,7 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 <div align="center">
 
-**Built with ❤️ by the Synkora Team**
+**Built with ❤️ by Devyansh Nigam**
 
 *Understand your code. Evolve your software.*
 
