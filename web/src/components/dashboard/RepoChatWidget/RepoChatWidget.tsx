@@ -107,7 +107,7 @@ export function RepoChatWidget({ repositoryId }: { repositoryId: string }) {
               <div style={{ textAlign: "center", color: "var(--color-text-secondary)", marginTop: "2rem" }}>
                 <p>Ask me anything about this repository!</p>
                 <p style={{ fontSize: "var(--text-xs)", opacity: 0.8 }}>
-                  e.g. "How does the authentication flow work?" or "Where is the database connected?"
+                  e.g. &quot;How does the authentication flow work?&quot; or &quot;Where is the database connected?&quot;
                 </p>
               </div>
             )}
@@ -121,11 +121,11 @@ export function RepoChatWidget({ repositoryId }: { repositoryId: string }) {
                     <ReactMarkdown
                       remarkPlugins={[remarkGfm]}
                       components={{
-                        code({ node, inline, className, children, ...props }: any) {
+                        code({ inline, className, children, ...props }: React.ComponentPropsWithoutRef<"code"> & { inline?: boolean }) {
                           const match = /language-(\w+)/.exec(className || "");
                           return !inline && match ? (
                             <SyntaxHighlighter
-                              style={vscDarkPlus as any}
+                              style={vscDarkPlus as unknown as { [key: string]: React.CSSProperties }}
                               language={match[1]}
                               PreTag="div"
                               {...props}

@@ -59,17 +59,21 @@ export default function RepoDashboardPage() {
         }
 
         // Fetch History
-        const historyRes = await api.get<{ history: any[] }>(`/api/v1/analysis/${id}/history`);
+        const historyRes = await api.get<{ history: { created_at: string; tech_debt_score: number }[] }>(`/api/v1/analysis/${id}/history`);
         if (historyRes.success && historyRes.data) {
-          const chartData = historyRes.data.history.map((a: any) => ({
+          const chartData = historyRes.data.history.map((a) => ({
             date: new Date(a.created_at).toLocaleDateString(),
             techDebt: a.tech_debt_score || 0,
           }));
           setHistory(chartData);
         }
 
-      } catch (err: any) {
-        setError(err.message || "Failed to load repository data");
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message || "Failed to load repository data");
+        } else {
+          setError("Failed to load repository data");
+        }
       } finally {
         setLoading(false);
       }
